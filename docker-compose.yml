@@ -1,0 +1,13 @@
+services:
+  odoo:
+    image: odoo:18.0
+    ports:
+      - "8069:8069"
+    volumes:
+      - ./custom_addons:/mnt/extra-addons # Mount your custom addons
+      - ./odoo.conf:/etc/odoo/odoo.conf # Mount your config file
+    environment:
+      - HOST=database-2.cdmeoe40abo2.eu-central-1.rds.amazonaws.com
+      - USER=postgres
+      - PASSWORD=xesxix-pebziG-5hepci
+    restart: always
