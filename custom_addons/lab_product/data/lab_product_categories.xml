@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Parent Category -->
+    <record id="lab_category_chemical" model="product.category">
+        <field name="name">Chemical</field>
+    </record>
+
+    <!-- Child Categories -->
+    <record id="lab_category_diluent" model="product.category">
+        <field name="name">Diluent</field>
+        <field name="parent_id" ref="lab_category_chemical"/>
+    </record>
+
+    <record id="lab_category_solution" model="product.category">
+        <field name="name">Solution</field>
+        <field name="parent_id" ref="lab_category_chemical"/>
+    </record>
+
+    <record id="lab_category_other" model="product.category">
+        <field name="name">Other</field>
+        <field name="parent_id" ref="lab_category_chemical"/>
+    </record>
+</odoo>

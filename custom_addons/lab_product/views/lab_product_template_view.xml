@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_form_view_lab_inherit" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.lab</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='default_code']" position="replace"/>
+            <xpath expr="//field[@name='image_1920']" position="replace"/>
+            <xpath expr="//field[@name='barcode']" position="replace"/>
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="CAS_number"/>
+                <field name="default_code"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="lab_product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.lab.hide.taxes</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='taxes_div']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[@name='list_price_uom']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[@name='weight']/field[@name='weight_uom_name']" position="replace"/>
+            <xpath expr="//div[@name='volume']/field[@name='volume_uom_name']" position="replace"/>
+            <xpath expr="//div[@name='weight']" position="inside">
+                <field name="weight_uom_id" options="{'no_create': True}" placeholder="g"/>
+            </xpath>
+            <xpath expr="//div[@name='volume']" position="inside">
+                <field name="volume_uom_id" options="{'no_create': True}" placeholder="L"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_product_form_expiry_lab_inherit" model="ir.ui.view">
+        <field name="name">product.template.expiry.override.lab</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="stock.view_template_property_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='use_time']" position="replace"/>
+            <xpath expr="//field[@name='use_time']/.." position="replace"/>
+            <xpath expr="//label[@for='removal_time']" position="replace"/>
+            <xpath expr="//field[@name='removal_time']/.." position="replace"/>
+            <xpath expr="//label[@for='alert_time']" position="replace"/>
+            <xpath expr="//field[@name='alert_time']/.." position="replace"/>
+            <xpath expr="//field[@name='expiration_time']/.." position="replace">
+                <div>
+                    <field name="expiration_time" class="oe_inline"/>
+                    <span> days after opening</span>
+                </div>
+            </xpath>
+            <xpath expr="//group[@name='expiry_and_lots']" position="inside">
+                <label for="opened_date"/>
+                <div>
+                    <field name="opened_date" class="oe_inline"/>
+                </div>
+                <label for="expiration_date_computed"/>
+                <div>
+                    <field name="expiration_date_computed" class="oe_inline"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

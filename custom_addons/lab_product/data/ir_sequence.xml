@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    
+    <record id="seq_product_default_code" model="ir.sequence">
+        <field name="name">Product Internal Reference</field>
+        <field name="code">product.template.default_code</field>
+        <field name="prefix">PROD-</field>
+        <field name="padding">5</field>
+    </record>
+
+</odoo>

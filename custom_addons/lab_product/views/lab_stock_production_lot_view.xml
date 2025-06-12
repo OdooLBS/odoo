@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_lot_hide_dates" model="ir.ui.view">
+        <field name="name">stock.lot.form.hide.dates</field>
+        <field name="model">stock.lot</field>
+        <field name="inherit_id" ref="stock.view_production_lot_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='removal_date']" position="replace"/>
+            <xpath expr="//field[@name='use_date']" position="replace"/>
+            <xpath expr="//field[@name='alert_date']" position="replace"/>
+        </field>
+    </record>
+</odoo>
