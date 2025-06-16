@@ -6,6 +6,7 @@ services:
     volumes:
       - ./custom_addons:/mnt/extra-addons # Mount your custom addons
       - ./odoo.conf:/etc/odoo/odoo.conf # Mount your config file
+      - ./odoo-web-data:/var/lib/odoo # Mount your web data
     environment:
       - HOST=database-2.cdmeoe40abo2.eu-central-1.rds.amazonaws.com
       - USER=postgres
