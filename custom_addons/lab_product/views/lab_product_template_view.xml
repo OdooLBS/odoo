@@ -67,4 +67,20 @@
             </xpath>
         </field>
     </record>
+
+    <record id="product_template_tree_view_sync_lims" model="ir.ui.view">
+        <field name="name">product.template.tree.sync.lims</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <header>
+                <button name="sync_with_lims"
+                        string="Sync with LIMS"
+                        type="object"
+                        class="oe_highlight"/>
+            </header>
+        </field>
+    </record>
+
+
 </odoo>

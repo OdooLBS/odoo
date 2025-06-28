@@ -11,7 +11,7 @@ class LabProduct(http.Controller):
     @http.route(
         "/lab/products/full_name",
         type="http",
-        auth="public",
+        auth="bearer",
         methods=["GET"],
         csrf=False,
     )
@@ -25,21 +25,33 @@ class LabProduct(http.Controller):
     @http.route(
         "/lab/products/quantity/<string:default_code>",
         type="http",
-        auth="public",
+        auth="bearer",
         methods=["GET"],
         csrf=False,
     )
     def get_product_quantity(self, default_code):
-        result = request.env["product.product"].get_product_quantity(default_code)
-        return request.make_response(
-            json.dumps(result, indent=4),
-            headers=[("Content-Type", "application/json")],
-        )
+        try:
+            result = request.env["product.product"].get_product_quantity(default_code)
+
+            return request.make_response(
+                json.dumps(result, indent=4),
+                headers=[("Content-Type", "application/json")],
+                status=200,
+            )
+        except ValueError as e:
+            return request.make_response(
+                json.dumps(
+                    {"error": str(e)},
+                    indent=4,
+                ),
+                headers=[("Content-Type", "application/json")],
+                status=404,
+            )
 
     @http.route(
         "/lab/products/quantity/<string:default_code>/update",
         type="http",
-        auth="user",
+        auth="bearer",
         methods=["POST"],
         csrf=False,
     )
@@ -49,14 +61,27 @@ class LabProduct(http.Controller):
             return request.make_response(
                 json.dumps({"error": "Quantity is required"}),
                 headers=[("Content-Type", "application/json")],
+                status=404,
             )
 
         _logger.debug(
             f"Updating quantity for product {default_code} with new quantity {quantity}"
         )
-
-        result = request.env["product.product"].update_quantity(default_code, quantity)
-        return request.make_response(
-            json.dumps(result, indent=4),
-            headers=[("Content-Type", "application/json")],
-        )
+        try:
+            result = request.env["product.product"].update_quantity(
+                default_code, quantity
+            )
+            return request.make_response(
+                json.dumps(result, indent=4),
+                headers=[("Content-Type", "application/json")],
+                status=200,
+            )
+        except ValueError as e:
+            return request.make_response(
+                json.dumps(
+                    {"error": str(e)},
+                    indent=4,
+                ),
+                headers=[("Content-Type", "application/json")],
+                status=404,
+            )

@@ -46,9 +46,7 @@ class LabProductProduct(models.Model):
         )._apply_inventory()
 
         return {
-            "success": True,
-            "product_reference": default_code,
-            "quantity": product.qty_available,
+            "message": f"Quantity for product with default code {default_code} update successfully.",
         }
 
     def _get_product_by_default_code(self, default_code):

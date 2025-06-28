@@ -55,6 +55,20 @@ class LabProductTemplate(models.Model):
         products = self._get_product_by_default_code()
         return [f"[{p.default_code}] {p.name}" for p in products]
 
+    def sync_with_lims(self):
+        # todo dodat dio logike za sync with lims
+
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": "Sync Complete",
+                "message": "Products have been successfully synchronized with LIMS.",
+                "sticky": False,  # Set to True if you want the message to stay until dismissed
+                "type": "success",  # Can be 'success', 'warning', 'danger', 'info'
+            },
+        }
+
     def _compute_expiration_date(self):
         for rec in self:
             if rec.opened_date and rec.expiration_time:
