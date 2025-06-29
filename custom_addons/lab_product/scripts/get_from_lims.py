@@ -3,17 +3,12 @@ import requests
 import json
 import logging
 
-logging.basicConfig(
-    filename="custom_addons/lab_product/scripts/logs/get_from_lims.log",
-    level=logging.INFO,
-    format="%(asctime)s %(levelname)s:%(message)s",
-)
+_logger = logging.getLogger(__name__)
 
 try:
-    # todo ovo je zapravo fja iz limsa
-
     token = os.environ.get("ERP_BEARER_TOKEN")
     headers = {"Authorization": f"Bearer {token}"}
+    url = "http://localhost:8000/lab/products/quantity/update/all"
 
     with open(
         "custom_addons/lab_product/scripts/input/lims_update.json",
@@ -23,7 +18,7 @@ try:
         data = json.load(f)
 
     response = requests.post(
-        url=f"http://localhost:8000/lab/products/quantity/update/all",
+        url=url,
         headers=headers,
         json=data,
     )
@@ -37,10 +32,9 @@ try:
     ) as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-    logging.info(
-        "Podaci uspješno dohvaćeni i zapisani u /custom_addons/lab_product/scripts/output/get_from_lims.json"
+    _logger.info(
+        "Data successfully logged in /custom_addons/lab_product/scripts/output/get_from_lims.json"
     )
 
 except Exception as e:
-    logging.error(f"Greška pri dohvaćanju ili zapisivanju podataka: {e}")
-    print(f"Došlo je do greške: {e}")
+    _logger.error(f"Error while retrieving data: {e}")

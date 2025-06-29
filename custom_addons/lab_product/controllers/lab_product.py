@@ -107,7 +107,7 @@ class LabProduct(http.Controller):
         methods=["POST"],
         csrf=False,
     )
-    def update_product_quantity(self):
+    def update_product_quantity_all(self):
         try:
             data = json.loads(http.request.httprequest.data)
         except Exception:
@@ -117,8 +117,11 @@ class LabProduct(http.Controller):
                 status=400,
             )
 
+        _logger.info(
+            f"POST request received on /lab/products/quantity/update/all with payload: {data}"
+        )
+
         products = data.get("products", [])
-        _logger.debug(products)
 
         results = []
         for product in products:
@@ -145,6 +148,9 @@ class LabProduct(http.Controller):
                     }
                 )
             except ValueError as e:
+                _logger.error(
+                    f"Error for product with default code {default_code}: {str(e)}"
+                )
                 results.append(
                     {"default_code": default_code, "status": "error", "message": str(e)}
                 )

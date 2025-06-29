@@ -2,6 +2,11 @@
 
 from datetime import timedelta
 from odoo import models, fields, api
+import logging
+
+from custom_addons.lab_product.scripts.sync import sync_erp_to_lims
+
+_logger = logging.getLogger(__name__)
 
 
 class LabProductTemplate(models.Model):
@@ -58,6 +63,9 @@ class LabProductTemplate(models.Model):
     @api.model
     def get_all_products(self):
         products = self._get_products()
+
+        _logger.info("Get data for all products")
+
         return [
             {
                 "default_code": p.default_code,
@@ -68,18 +76,32 @@ class LabProductTemplate(models.Model):
         ]
 
     def sync_with_lims(self):
-        # todo dodat dio logike za sync with lims
+        all_data = self.get_all_products()
+        lims_response = sync_erp_to_lims(all_data)
+        if lims_response:
+            _logger.info("Sync successful")
 
-        return {
-            "type": "ir.actions.client",
-            "tag": "display_notification",
-            "params": {
-                "title": "Sync Complete",
-                "message": "Products have been successfully synchronized with LIMS.",
-                "sticky": False,  # Set to True if you want the message to stay until dismissed
-                "type": "success",  # Can be 'success', 'warning', 'danger', 'info'
-            },
-        }
+            return {
+                "type": "ir.actions.client",
+                "tag": "display_notification",
+                "params": {
+                    "title": "Sinkronizacija završena",
+                    "message": "Proizvodi su uspješno sinkronizirani s LIMS-om.",
+                    "sticky": False,
+                    "type": "success",
+                },
+            }
+        else:
+            return {
+                "type": "ir.actions.client",
+                "tag": "display_notification",
+                "params": {
+                    "title": "Greška pri sinkronizaciji",
+                    "message": "Došlo je do greške prilikom sinkronizacije s LIMS-om. Provjerite logove za detalje.",
+                    "sticky": True,
+                    "type": "danger",
+                },
+            }
 
     def _compute_expiration_date(self):
         for rec in self:

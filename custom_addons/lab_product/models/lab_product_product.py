@@ -2,6 +2,8 @@ from odoo import models, api
 import json
 import logging
 
+_logger = logging.getLogger(__name__)
+
 
 class LabProductProduct(models.Model):
     _inherit = "product.product"
@@ -46,6 +48,10 @@ class LabProductProduct(models.Model):
                 "inventory_quantity": quantity,
             }
         )._apply_inventory()
+
+        _logger.info(
+            f"Quantity for product with default code {default_code} update successfully."
+        )
 
         return {
             "message": f"Quantity for product with default code {default_code} update successfully.",
