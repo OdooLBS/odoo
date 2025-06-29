@@ -1,0 +1,23 @@
+[
+  {
+    "default_code": "PROD-00001",
+    "status": "success",
+    "result": {
+      "message": "Quantity for product with default code PROD-00001 update successfully."
+    }
+  },
+  {
+    "default_code": "PROD-00002",
+    "status": "success",
+    "result": {
+      "message": "Quantity for product with default code PROD-00002 update successfully."
+    }
+  },
+  {
+    "default_code": "PROD-00003",
+    "status": "success",
+    "result": {
+      "message": "Quantity for product with default code PROD-00003 update successfully."
+    }
+  }
+]

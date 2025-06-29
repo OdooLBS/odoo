@@ -1,4 +1,6 @@
 from odoo import models, api
+import json
+import logging
 
 
 class LabProductProduct(models.Model):

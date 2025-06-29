@@ -52,8 +52,20 @@ class LabProductTemplate(models.Model):
 
     @api.model
     def get_full_name(self):
-        products = self._get_product_by_default_code()
+        products = self._get_products()
         return [f"[{p.default_code}] {p.name}" for p in products]
+
+    @api.model
+    def get_all_products(self):
+        products = self._get_products()
+        return [
+            {
+                "default_code": p.default_code,
+                "name": p.name,
+                "quantity": p.qty_available,
+            }
+            for p in products
+        ]
 
     def sync_with_lims(self):
         # todo dodat dio logike za sync with lims
@@ -95,11 +107,10 @@ class LabProductTemplate(models.Model):
             raise ValueError("No sequence found for product.template.default_code")
         return code
 
-    def _get_product_by_default_code(self):
+    def _get_products(self):
         """
-        Retrieve product by their default code.
+        Retrieve all products.
 
-        :param default_code: Product default code.
-        :return: Product record or None if not found.
+        :return: All products.
         """
         return self.search([], order="default_code ASC")

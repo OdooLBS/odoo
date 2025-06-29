@@ -1,0 +1,537 @@
+[
+  {
+    "default_code": "PROD-00001",
+    "name": "Etanol (EtOH)- HPLC grade",
+    "quantity": 3.0
+  },
+  {
+    "default_code": "PROD-00002",
+    "name": "Etanol (EtOH)- HPLC grade",
+    "quantity": 9.0
+  },
+  {
+    "default_code": "PROD-00003",
+    "name": "Heptan (HPLC grade)",
+    "quantity": 5.0
+  },
+  {
+    "default_code": "PROD-00004",
+    "name": "Heptan (HPLC grade)",
+    "quantity": 2.0
+  },
+  {
+    "default_code": "PROD-00005",
+    "name": "Dichloromethane",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00006",
+    "name": "Dichloromethane",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00007",
+    "name": "Dichloromethane",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00008",
+    "name": "Dichloromethane",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00009",
+    "name": "Dichloromethane",
+    "quantity": 0.1
+  },
+  {
+    "default_code": "PROD-00010",
+    "name": "Dichloromethane",
+    "quantity": 0.95
+  },
+  {
+    "default_code": "PROD-00011",
+    "name": "Acetonitril (HPLC grade)",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00012",
+    "name": "Acetonitril (HPLC grade)",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00013",
+    "name": "Acetonitril (HPLC grade)",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00014",
+    "name": "Acetonitril (HPLC grade)",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00015",
+    "name": "Tetrahidrofuran (THF)",
+    "quantity": 0.4
+  },
+  {
+    "default_code": "PROD-00016",
+    "name": "Aceton",
+    "quantity": 0.4
+  },
+  {
+    "default_code": "PROD-00017",
+    "name": "Metanol (MeOH) za HPLC",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00018",
+    "name": "Metanol (MeOH) za HPLC",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00019",
+    "name": "Metanol (MeOH) za HPLC",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00020",
+    "name": "Metanol (MeOH) za HPLC",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00021",
+    "name": "Metanol (LC-MS)",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00022",
+    "name": "Metanol (LC-MS)",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00023",
+    "name": "Etil acetat (GC-MS)",
+    "quantity": 0.7
+  },
+  {
+    "default_code": "PROD-00024",
+    "name": "2-Propanol (LC-MS)",
+    "quantity": 1.5
+  },
+  {
+    "default_code": "PROD-00025",
+    "name": "EtOH 96%",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00026",
+    "name": "Hexane (za HPLC)",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00027",
+    "name": "Hexane (za HPLC)",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00028",
+    "name": "Hexane (za HPLC)",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00029",
+    "name": "Hexane (za HPLC)",
+    "quantity": 0.9
+  },
+  {
+    "default_code": "PROD-00030",
+    "name": "Benzen p.a.",
+    "quantity": 0.9
+  },
+  {
+    "default_code": "PROD-00031",
+    "name": "Etanol (EtOH)",
+    "quantity": 2.4
+  },
+  {
+    "default_code": "PROD-00032",
+    "name": "Metanol (MeOH) za LC-MS",
+    "quantity": 1.5
+  },
+  {
+    "default_code": "PROD-00033",
+    "name": "Aceton",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00034",
+    "name": "Hexane (za HPLC)",
+    "quantity": 0.4
+  },
+  {
+    "default_code": "PROD-00035",
+    "name": "Tetrahidrofuran (THF)",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00036",
+    "name": "Dimethyl sulfoxide",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00037",
+    "name": "Dimethyl sulfoxide",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00038",
+    "name": "Dimethyl sulfoxide",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00039",
+    "name": "Dimethyl sulfoxide",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00040",
+    "name": "Dimethyl sulfoxide",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00041",
+    "name": "Acetonitril (ACN) za LC-MS",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00042",
+    "name": "Acetonitril (ACN) za LC-MS",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00043",
+    "name": "Acetonitril (ACN) za LC-MS",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00044",
+    "name": "Kloroform",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00045",
+    "name": "Acetonitril (ACN) za LC-MS",
+    "quantity": 1.9
+  },
+  {
+    "default_code": "PROD-00046",
+    "name": "Acetonitril (ACN) za LC-MS",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00047",
+    "name": "Kloroform",
+    "quantity": 0.7
+  },
+  {
+    "default_code": "PROD-00048",
+    "name": "2-Methyl-tetrahidrofuran",
+    "quantity": 0.9
+  },
+  {
+    "default_code": "PROD-00049",
+    "name": "Dimetilsulfoksid (DMSO)",
+    "quantity": 0.8
+  },
+  {
+    "default_code": "PROD-00050",
+    "name": "Mathyl tert-butyl ether (MTBE) HPLC i GC grade",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00051",
+    "name": "Mathyl tert-butyl ether (MTBE) HPLC i GC grade",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00052",
+    "name": "Mathyl tert-butyl ether (MTBE) HPLC i GC grade",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00053",
+    "name": "Mathyl tert-butyl ether (MTBE) HPLC i GC grade",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00054",
+    "name": "Mathyl tert-butyl ether (MTBE) HPLC i GC grade",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00055",
+    "name": "Mathyl tert-butyl ether (MTBE) HPLC i GC grade",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00056",
+    "name": "Mathyl tert-butyl ether (MTBE) HPLC i GC grade",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00057",
+    "name": "Mathyl tert-butyl ether (MTBE) HPLC i GC grade",
+    "quantity": 0.7
+  },
+  {
+    "default_code": "PROD-00058",
+    "name": "2-Fenoksietanol",
+    "quantity": 1.5
+  },
+  {
+    "default_code": "PROD-00059",
+    "name": "2-Fenoksietanol",
+    "quantity": 1.5
+  },
+  {
+    "default_code": "PROD-00060",
+    "name": "5,6 trans Latanoprost",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00061",
+    "name": "5,6-trans Latanoprost",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00062",
+    "name": "5,6-trans Latanoprost",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00063",
+    "name": "Benzofenon",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00064",
+    "name": "Benzofenon",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00065",
+    "name": "Benzojeva Kiselina",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00066",
+    "name": "Butilparaben",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00067",
+    "name": "Etilparaben",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00068",
+    "name": "Latanoprost",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00069",
+    "name": "Latanoprost",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00070",
+    "name": "Latanoprost kiselina",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00071",
+    "name": "Latanoprost kiselina",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00072",
+    "name": "Metilparaben",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00073",
+    "name": "Propilparaben",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00074",
+    "name": "CH3COONH4",
+    "quantity": 400.0
+  },
+  {
+    "default_code": "PROD-00075",
+    "name": "Hanks Balanced Salt Solution",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00076",
+    "name": "Hanks Balanced Salt Solution",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00077",
+    "name": "Hanks Balanced Salt Solution",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00078",
+    "name": "Hanks Balanced Salt Solution",
+    "quantity": 0.3
+  },
+  {
+    "default_code": "PROD-00079",
+    "name": "HClO4",
+    "quantity": 0.09
+  },
+  {
+    "default_code": "PROD-00080",
+    "name": "KCl",
+    "quantity": 500.0
+  },
+  {
+    "default_code": "PROD-00081",
+    "name": "KH2PO4",
+    "quantity": 100.0
+  },
+  {
+    "default_code": "PROD-00082",
+    "name": "KH2PO4",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00083",
+    "name": "Klorovodična kiselina (HCl)",
+    "quantity": 0.49
+  },
+  {
+    "default_code": "PROD-00084",
+    "name": "KOH",
+    "quantity": 800.0
+  },
+  {
+    "default_code": "PROD-00085",
+    "name": "Kromsumporna kiselina",
+    "quantity": 0.9
+  },
+  {
+    "default_code": "PROD-00086",
+    "name": "Mravlja kiselina",
+    "quantity": 0.49
+  },
+  {
+    "default_code": "PROD-00087",
+    "name": "Na2HP04",
+    "quantity": 250.0
+  },
+  {
+    "default_code": "PROD-00088",
+    "name": "NaCl",
+    "quantity": 100.0
+  },
+  {
+    "default_code": "PROD-00089",
+    "name": "NaOH",
+    "quantity": 500.0
+  },
+  {
+    "default_code": "PROD-00090",
+    "name": "Natrijev klorid",
+    "quantity": 500.0
+  },
+  {
+    "default_code": "PROD-00091",
+    "name": "Natrijev klorid",
+    "quantity": 500.0
+  },
+  {
+    "default_code": "PROD-00092",
+    "name": "Natrijev klorid",
+    "quantity": 500.0
+  },
+  {
+    "default_code": "PROD-00093",
+    "name": "Natrijev klorid",
+    "quantity": 500.0
+  },
+  {
+    "default_code": "PROD-00094",
+    "name": "Sumporna kiselina (H2SO4)",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00095",
+    "name": "T-REX A",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00096",
+    "name": "T-REX A",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00097",
+    "name": "T-REX A",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00098",
+    "name": "T-REX A",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00099",
+    "name": "UN 1002 ZRAK, STKLAČEN 2.2. (E)",
+    "quantity": 50.0
+  },
+  {
+    "default_code": "PROD-00100",
+    "name": "UN 1046 HELIJ, STLAČEN, 2.2. (E)",
+    "quantity": 50.0
+  },
+  {
+    "default_code": "PROD-00101",
+    "name": "Voda (HPLC grade)",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00102",
+    "name": "Voda (HPLC grade)",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00103",
+    "name": "Voda (LC-MS grade)",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00104",
+    "name": "Voda (LC-MS grade)",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00105",
+    "name": "Voda (LC-MS grade)",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00106",
+    "name": "Voda (LC-MS grade)",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00107",
+    "name": "Voda (LC-MS grade)",
+    "quantity": 2.5
+  }
+]

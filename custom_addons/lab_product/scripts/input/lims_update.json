@@ -1,0 +1,19 @@
+{
+    "products": [
+        {
+        "default_code": "PROD-00001",
+        "name": "Etanol (EtOH)- HPLC grade",
+        "quantity": 1.0
+        },
+        {
+        "default_code": "PROD-00002",
+        "name": "Etanol (EtOH)- HPLC grade",
+        "quantity": 2.0
+        },
+        {
+        "default_code": "PROD-00003",
+        "name": "Heptan (HPLC grade)",
+        "quantity": 3.0
+        }
+    ]
+}
