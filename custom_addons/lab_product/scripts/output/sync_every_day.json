@@ -1,0 +1,430 @@
+[
+  {
+    "default_code": "PROD-00003",
+    "quantity": 3.0
+  },
+  {
+    "default_code": "PROD-00105",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00076",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00049",
+    "quantity": 0.8
+  },
+  {
+    "default_code": "PROD-00023",
+    "quantity": 0.7
+  },
+  {
+    "default_code": "PROD-00087",
+    "quantity": 250.0
+  },
+  {
+    "default_code": "PROD-00046",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00014",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00007",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00061",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00052",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00044",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00065",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00019",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00097",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00021",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00005",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00081",
+    "quantity": 100.0
+  },
+  {
+    "default_code": "PROD-00101",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00071",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00106",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00051",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00016",
+    "quantity": 0.4
+  },
+  {
+    "default_code": "PROD-00037",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00078",
+    "quantity": 0.3
+  },
+  {
+    "default_code": "PROD-00068",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00041",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00090",
+    "quantity": 500.0
+  },
+  {
+    "default_code": "PROD-00063",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00100",
+    "quantity": 50.0
+  },
+  {
+    "default_code": "PROD-00012",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00050",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00104",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00060",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00043",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00082",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00047",
+    "quantity": 0.7
+  },
+  {
+    "default_code": "PROD-00042",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00039",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00107",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00074",
+    "quantity": 400.0
+  },
+  {
+    "default_code": "PROD-00011",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00070",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00030",
+    "quantity": 0.9
+  },
+  {
+    "default_code": "PROD-00083",
+    "quantity": 0.49
+  },
+  {
+    "default_code": "PROD-00091",
+    "quantity": 500.0
+  },
+  {
+    "default_code": "PROD-00094",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00022",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00027",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00045",
+    "quantity": 1.9
+  },
+  {
+    "default_code": "PROD-00036",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00055",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00073",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00072",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00017",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00092",
+    "quantity": 500.0
+  },
+  {
+    "default_code": "PROD-00093",
+    "quantity": 500.0
+  },
+  {
+    "default_code": "PROD-00053",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00034",
+    "quantity": 0.4
+  },
+  {
+    "default_code": "PROD-00062",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00058",
+    "quantity": 1.5
+  },
+  {
+    "default_code": "PROD-00010",
+    "quantity": 0.95
+  },
+  {
+    "default_code": "PROD-00038",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00035",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00057",
+    "quantity": 0.7
+  },
+  {
+    "default_code": "PROD-00085",
+    "quantity": 0.9
+  },
+  {
+    "default_code": "PROD-00048",
+    "quantity": 0.9
+  },
+  {
+    "default_code": "PROD-00103",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00028",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00018",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00008",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00001",
+    "quantity": 10.0
+  },
+  {
+    "default_code": "PROD-00024",
+    "quantity": 1.5
+  },
+  {
+    "default_code": "PROD-00102",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00079",
+    "quantity": 0.09
+  },
+  {
+    "default_code": "PROD-00077",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00031",
+    "quantity": 2.4
+  },
+  {
+    "default_code": "PROD-00004",
+    "quantity": 2.0
+  },
+  {
+    "default_code": "PROD-00064",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00075",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00013",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00002",
+    "quantity": 2.0
+  },
+  {
+    "default_code": "PROD-00015",
+    "quantity": 0.4
+  },
+  {
+    "default_code": "PROD-00056",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00040",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00029",
+    "quantity": 0.9
+  },
+  {
+    "default_code": "PROD-00099",
+    "quantity": 50.0
+  },
+  {
+    "default_code": "PROD-00025",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00033",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00026",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00084",
+    "quantity": 800.0
+  },
+  {
+    "default_code": "PROD-00066",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00054",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00020",
+    "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00089",
+    "quantity": 500.0
+  },
+  {
+    "default_code": "PROD-00088",
+    "quantity": 100.0
+  },
+  {
+    "default_code": "PROD-00095",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00032",
+    "quantity": 1.5
+  },
+  {
+    "default_code": "PROD-00086",
+    "quantity": 0.49
+  },
+  {
+    "default_code": "PROD-00059",
+    "quantity": 1.5
+  },
+  {
+    "default_code": "PROD-00096",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00080",
+    "quantity": 500.0
+  },
+  {
+    "default_code": "PROD-00006",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00098",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00069",
+    "quantity": 1.0
+  },
+  {
+    "default_code": "PROD-00009",
+    "quantity": 0.1
+  },
+  {
+    "default_code": "PROD-00067",
+    "quantity": 1.0
+  }
+]

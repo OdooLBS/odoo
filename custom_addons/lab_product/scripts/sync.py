@@ -28,7 +28,7 @@ def sync_erp_to_lims(all_data):
         #    "Content-Type": "application/json",
         # }
     #
-    # lims_url = "http://mlims.com/api/erp/products/sync"
+    # lims_url = "https://mlims.com/api/erp/products/sync"
 
     # _logger.info(f"Call {lims_url}")
     #

@@ -1,4 +1,4 @@
 {
-  "product_id": "PROD-00003",
-  "quantity": -3.0
+  "default_code": "PROD-00001",
+  "quantity": 10.0
 }
