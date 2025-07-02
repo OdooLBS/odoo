@@ -2,7 +2,7 @@
   {
     "default_code": "PROD-00001",
     "name": "Etanol (EtOH)- HPLC grade",
-    "quantity": 1.0
+    "quantity": 10.0
   },
   {
     "default_code": "PROD-00002",
@@ -533,5 +533,10 @@
     "default_code": "PROD-00107",
     "name": "Voda (LC-MS grade)",
     "quantity": 2.5
+  },
+  {
+    "default_code": "PROD-00123",
+    "name": "Natrijev hidroksid",
+    "quantity": 1.0
   }
 ]

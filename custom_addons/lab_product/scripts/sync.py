@@ -10,6 +10,7 @@ def sync_erp_to_lims(all_data):
     _logger.info("Tying to sync data with LIMS started")
 
     try:
+        # fix predaja
         with open(
             "custom_addons/lab_product/scripts/output/sync.json",
             "w",
@@ -22,6 +23,7 @@ def sync_erp_to_lims(all_data):
 
         return True
 
+        # fix predaja
         # lims_token = os.environ.get("LIMS_BEARER_TOKEN")
         # lims_headers = {
         #    "Authorization": f"Bearer {lims_token}",

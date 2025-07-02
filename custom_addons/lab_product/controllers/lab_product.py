@@ -2,6 +2,7 @@
 from odoo import http
 from odoo.http import request, json
 import logging
+from custom_addons.jwt_auth_api.utils.jwt_auth import jwt_required
 
 _logger = logging.getLogger(__name__)
 
@@ -9,12 +10,13 @@ _logger = logging.getLogger(__name__)
 class LabProduct(http.Controller):
 
     @http.route(
-        "/lab/products/full_name",
+        "/lab/products/all",
         type="http",
-        auth="bearer",
+        auth="none",
         methods=["GET"],
         csrf=False,
     )
+    @jwt_required
     def get_full_product_name(self):
         result = request.env["product.template"].get_full_name()
         return request.make_response(
@@ -25,11 +27,12 @@ class LabProduct(http.Controller):
     @http.route(
         "/lab/products/quantity/all",
         type="http",
-        auth="bearer",
+        auth="none",
         methods=["GET"],
         csrf=False,
     )
-    def get_full_product_name(self):
+    @jwt_required
+    def get_all_products_quantities(self):
         result = request.env["product.template"].get_all_products()
         return request.make_response(
             json.dumps(result, indent=4),
@@ -39,10 +42,11 @@ class LabProduct(http.Controller):
     @http.route(
         "/lab/products/quantity/<string:default_code>",
         type="http",
-        auth="bearer",
+        auth="none",
         methods=["GET"],
         csrf=False,
     )
+    @jwt_required
     def get_product_quantity(self, default_code):
         try:
             result = request.env["product.product"].get_product_quantity(default_code)
@@ -65,12 +69,14 @@ class LabProduct(http.Controller):
     @http.route(
         "/lab/products/quantity/<string:default_code>/update",
         type="http",
-        auth="bearer",
+        auth="none",
         methods=["POST"],
         csrf=False,
     )
+    @jwt_required
     def update_product_quantity(self, default_code):
-        quantity = request.params.get("quantity")
+        data = request.get_json_data()
+        quantity = data.get("quantity")
         if not quantity:
             return request.make_response(
                 json.dumps({"error": "Quantity is required"}),
@@ -103,10 +109,11 @@ class LabProduct(http.Controller):
     @http.route(
         "/lab/products/quantity/update/all",
         type="http",
-        auth="bearer",
+        auth="none",
         methods=["POST"],
         csrf=False,
     )
+    @jwt_required
     def update_product_quantity_all(self):
         try:
             data = json.loads(http.request.httprequest.data)

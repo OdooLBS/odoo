@@ -15,6 +15,7 @@ def serialize_decimal(obj):
 
 
 db_params = {
+    # fix predaja
     "host": "localhost",
     # database-2.cdmeoe40abo2.eu-central-1.rds.amazonaws.com
     "port": 5432,
@@ -53,6 +54,7 @@ try:
         json.dump(products, f, ensure_ascii=False, indent=2, default=serialize_decimal)
     logging.info(f"Exported {len(products)} products to {output_file}")
 
+    # fix predaja
     # lims_token = os.environ.get("LIMS_BEARER_TOKEN")
     # lims_headers = {
     #    "Authorization": f"Bearer {lims_token}",

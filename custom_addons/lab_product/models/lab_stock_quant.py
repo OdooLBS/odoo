@@ -25,6 +25,7 @@ class LabStockQuant(models.Model):
         }
 
         try:
+            # fix predaja
             with open(
                 "custom_addons/lab_product/scripts/output/send_to_lims.json",
                 "w",
@@ -37,6 +38,7 @@ class LabStockQuant(models.Model):
             _logger.info(f"Call {lims_url}")
             _logger.info(f"Response from LIMS: update done")
 
+            # fix predaja
             # lims_token = os.environ.get("LIMS_BEARER_TOKEN")
             # lims_headers = {
             #    "Authorization": f"Bearer {lims_token}",

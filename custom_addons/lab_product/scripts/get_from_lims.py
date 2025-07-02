@@ -5,6 +5,8 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
+# fix predaja ovaj file ne predavat
+
 try:
     token = os.environ.get("ERP_BEARER_TOKEN")
     headers = {"Authorization": f"Bearer {token}"}
