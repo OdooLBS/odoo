@@ -12,6 +12,9 @@
                 <field name="CAS_number"/>
                 <field name="default_code"/>
             </xpath>
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="uom_id" class="oe_inline" style="max-width:136px" options="{'no_create': True}"/>
+            </xpath>
         </field>
     </record>
 
@@ -60,14 +63,12 @@
                 <div>
                     <field name="opened_date" class="oe_inline"/>
                 </div>
-                <label for="expiration_date_computed"/>
-                <div>
-                    <field name="expiration_date_computed" class="oe_inline"/>
-                </div>
             </xpath>
+
+
         </field>
     </record>
-
+<!--
     <record id="product_template_tree_view_sync_lims" model="ir.ui.view">
         <field name="name">product.template.tree.sync.lims</field>
         <field name="model">product.template</field>
@@ -81,6 +82,6 @@
             </header>
         </field>
     </record>
-
+-->
 
 </odoo>

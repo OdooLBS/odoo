@@ -52,3 +52,7 @@ package.json
 
 # logs
 logs/
+log/
+
+desktop.ini
+odoo/sessions/*

@@ -1,7 +1,7 @@
 from odoo import http
 from odoo.http import request, json
 
-from custom_addons.jwt_auth_api.utils.jwt_auth import jwt_required
+#from jwt_auth_api.utils.jwt_auth import jwt_required
 
 
 class LabStockLot(http.Controller):
@@ -13,7 +13,7 @@ class LabStockLot(http.Controller):
         methods=["GET"],
         csrf=False,
     )
-    @jwt_required
+    #@jwt_required
     def get_stock_lots(self):
         try:
             result = request.env["stock.lot"].get_stock_lots()

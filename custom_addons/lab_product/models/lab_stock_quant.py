@@ -1,8 +1,6 @@
 from odoo import models
 import json
 import logging
-import os
-import requests
 
 _logger = logging.getLogger(__name__)
 
@@ -12,11 +10,12 @@ class LabStockQuant(models.Model):
 
     def write(self, vals):
         res = super().write(vals)
-        if "quantity" in vals:
-            for record in self:
-                record._sync_with_lims_stock_quant(vals["quantity"])
+        #if "quantity" in vals:
+        #    for record in self:
+        #        record._sync_with_lims_stock_quant(vals["quantity"])
         return res
 
+    """
     def _sync_with_lims_stock_quant(self, new_quantity):
 
         data = {
@@ -67,3 +66,4 @@ class LabStockQuant(models.Model):
         except Exception as e:
             logging.error(f"Greška pri dohvaćanju ili zapisivanju podataka: {e}")
             print(f"Došlo je do greške: {e}")
+"""

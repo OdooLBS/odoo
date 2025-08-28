@@ -4,7 +4,7 @@ from datetime import timedelta
 from odoo import models, fields, api
 import logging
 
-from custom_addons.lab_product.scripts.sync import sync_erp_to_lims
+#from ..scripts.sync import sync_erp_to_lims
 
 _logger = logging.getLogger(__name__)
 
@@ -45,9 +45,6 @@ class LabProductTemplate(models.Model):
         domain="[('category_id.name', '=', 'Volume')]",
     )
     opened_date = fields.Date(string="Date Of Opening")
-    expiration_date_computed = fields.Date(
-        string="Expiration Date", compute="_compute_expiration_date"
-    )
 
     @api.model
     def create(self, vals):
@@ -75,6 +72,7 @@ class LabProductTemplate(models.Model):
             for p in products
         ]
 
+    """
     def sync_with_lims(self):
         all_data = self.get_all_products()
         lims_response = sync_erp_to_lims(all_data)
@@ -102,26 +100,25 @@ class LabProductTemplate(models.Model):
                     "type": "danger",
                 },
             }
+    """
 
-    def _compute_expiration_date(self):
-        for rec in self:
-            if rec.opened_date and rec.expiration_time:
-                expiration_date = rec.opened_date + timedelta(days=rec.expiration_time)
-                rec.expiration_date_computed = expiration_date
+    def write(self, vals):
+        res = super().write(vals)
 
-                lots = self.env["stock.lot"].search(
-                    [("product_id.product_tmpl_id", "=", rec.id)]
-                )
-                lots.write({"expiration_date": expiration_date})
+        if vals.get("opened_date") is not None or vals.get("expiration_time") is not None:
+            for product in self:
+                for variant in product.product_variant_ids.filtered(lambda v: v.tracking in ('lot', 'serial')):
+                    lots = self.env["stock.lot"].search([("product_id", "=", variant.id)])
+                    for lot in lots:
+                        lot.with_context(from_template_recompute=True).write({
+                            "expiration_date": lot._calculate_expiration_date(
+                                product.opened_date,
+                                product.expiration_time,
+                            )
+                        })
 
-            else:
-                lots = self.env["stock.lot"].search(
-                    [("product_id.product_tmpl_id", "=", rec.id)]
-                )
-                lot_expiration = next(
-                    (lot.expiration_date for lot in lots if lot.expiration_date), None
-                )
-                rec.expiration_date_computed = lot_expiration or False
+        return res
+
 
     def _get_default_code(self):
         code = self.env["ir.sequence"].next_by_code("product.template.default_code")

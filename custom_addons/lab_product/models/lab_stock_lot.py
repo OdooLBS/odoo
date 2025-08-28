@@ -1,6 +1,8 @@
-from datetime import timedelta, datetime
+from datetime import timedelta
 from odoo import models, fields, api
 import logging
+
+from odoo.exceptions import ValidationError, UserError
 
 _logger = logging.getLogger(__name__)
 
@@ -11,7 +13,6 @@ class LabStockLot(models.Model):
     expiration_date = fields.Datetime(
         string="Expiration Date",
         compute="_compute_expiration_date",
-        inverse="_inverse_expiration_date",
         store=True,
         readonly=False,
         help="Editable field. Syncs with product's opened_date + expiration_time.",
@@ -29,35 +30,17 @@ class LabStockLot(models.Model):
             else:
                 lot.expiration_date = False
 
-    def _inverse_expiration_date(self):
-        for lot in self:
-            product_template = lot.product_id.product_tmpl_id
-            if (
-                product_template
-                and product_template.opened_date
-                and lot.expiration_date
-            ):
-                try:
-                    new_exp_time = (
-                        lot.expiration_date.date() - product_template.opened_date
-                    ).days
-                    if product_template.expiration_time != new_exp_time:
-                        product_template.expiration_time = new_exp_time
-                        _logger.info(
-                            f"[INVERSE] Updated product expiration_time to {new_exp_time}"
-                        )
-                except Exception as e:
-                    _logger.error(f"[INVERSE ERROR] {e}")
-
     @api.model
     def create(self, vals):
-        if not vals.get("expiration_date") and vals.get("product_id"):
+
+        if vals.get("product_id") and vals["expiration_date"]:
             product_template = (
                 self.env["product.product"].browse(vals["product_id"]).product_tmpl_id
             )
-            vals["expiration_date"] = self._calculate_expiration_date(
-                product_template.opened_date, product_template.expiration_time
-            )
+            if product_template.opened_date:
+                vals["expiration_date"] = self._calculate_expiration_date(
+                    product_template.opened_date, product_template.expiration_time
+                )
 
         return super().create(vals)
 
@@ -79,11 +62,19 @@ class LabStockLot(models.Model):
         return result
 
     def write(self, vals):
-        res = super().write(vals)
-        if "expiration_date" in vals:
-            self._inverse_expiration_date()
-        return res
+        if self.env.context.get('from_template_recompute'):
+            return super().write(vals)
 
-    def _calculate_expiration_date(self, oepened_date, expiration_time):
-        if oepened_date and expiration_time:
-            return oepened_date + timedelta(days=expiration_time)
+        for lot in self:
+            if vals.get("expiration_date"):
+                product_template = lot.product_id.product_tmpl_id
+                if product_template.opened_date:
+                    # dont set expiration_date to new value if opened_date is set, and use calculation instead
+                    raise UserError(
+                        "Cannot set expiration date directly when date of opening is set."
+                    )
+        return super().write(vals)
+
+    def _calculate_expiration_date(self, opened_date, expiration_time):
+        if opened_date and expiration_time:
+            return opened_date + timedelta(days=expiration_time)

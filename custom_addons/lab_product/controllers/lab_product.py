@@ -2,7 +2,8 @@
 from odoo import http
 from odoo.http import request, json
 import logging
-from custom_addons.jwt_auth_api.utils.jwt_auth import jwt_required
+
+#from jwt_auth_api.utils.jwt_auth import jwt_required
 
 _logger = logging.getLogger(__name__)
 
@@ -16,7 +17,7 @@ class LabProduct(http.Controller):
         methods=["GET"],
         csrf=False,
     )
-    @jwt_required
+    #@jwt_required
     def get_full_product_name(self):
         result = request.env["product.template"].get_full_name()
         return request.make_response(
@@ -31,7 +32,7 @@ class LabProduct(http.Controller):
         methods=["GET"],
         csrf=False,
     )
-    @jwt_required
+    #@jwt_required
     def get_all_products_quantities(self):
         result = request.env["product.template"].get_all_products()
         return request.make_response(
@@ -46,7 +47,7 @@ class LabProduct(http.Controller):
         methods=["GET"],
         csrf=False,
     )
-    @jwt_required
+    #@jwt_required
     def get_product_quantity(self, default_code):
         try:
             result = request.env["product.product"].get_product_quantity(default_code)
@@ -73,7 +74,7 @@ class LabProduct(http.Controller):
         methods=["POST"],
         csrf=False,
     )
-    @jwt_required
+    #@jwt_required
     def update_product_quantity(self, default_code):
         data = request.get_json_data()
         quantity = data.get("quantity")
@@ -113,7 +114,7 @@ class LabProduct(http.Controller):
         methods=["POST"],
         csrf=False,
     )
-    @jwt_required
+    #@jwt_required
     def update_product_quantity_all(self):
         try:
             data = json.loads(http.request.httprequest.data)
