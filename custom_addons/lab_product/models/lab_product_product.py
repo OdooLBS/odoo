@@ -1,11 +1,40 @@
 from odoo import models, api
 import logging
 
+from odoo import api, fields, models, tools, _
+
 _logger = logging.getLogger(__name__)
 
 
 class LabProductProduct(models.Model):
     _inherit = "product.product"
+
+    _sql_constraints = [
+        (
+            "default_code_uniq",
+            "unique(default_code)",
+            "Internal Reference must be unique.",
+        )
+    ]
+
+    @api.model
+    def default_get(self, fields_list):
+        defaults = super().default_get(fields_list)
+        if "default_code" in fields_list:
+            defaults["default_code"] = self._get_default_code()
+        return defaults
+
+    default_code = fields.Char(
+        string="Internal Reference",
+        copy=False,
+        index=True,
+    )
+
+    @api.model
+    def create(self, vals):
+        if not vals.get("default_code"):
+            vals["default_code"] = self._get_default_code()
+        return super().create(vals)
 
     @api.model
     def get_product_quantity(self, default_code):
@@ -98,3 +127,9 @@ class LabProductProduct(models.Model):
             "weight_uom": product.product_tmpl_id.weight_uom_id.name,
             "volume_uom": product.product_tmpl_id.volume_uom_id.name,
         }
+
+    def _get_default_code(self):
+        code = self.env["ir.sequence"].next_by_code("product.template.default_code") # product.template.default_code zato da ostane sljedivost 
+        if not code:
+            raise ValueError("No sequence found for product.product.default_code")
+        return code

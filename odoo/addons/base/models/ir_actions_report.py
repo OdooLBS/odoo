@@ -894,8 +894,8 @@ class IrActionsReport(models.Model):
             # pages one by one.
             html_ids_wo_none = [x for x in html_ids if x]
             reader = PdfFileReader(pdf_content_stream)
-            if reader.numPages == len(res_ids_wo_stream):
-                for i in range(reader.numPages):
+            if len(reader.pages) == len(res_ids_wo_stream):
+                for i in range(len(reader.pages)):
                     attachment_writer = PdfFileWriter()
                     attachment_writer.addPage(reader.getPage(i))
                     stream = io.BytesIO()
@@ -936,7 +936,7 @@ class IrActionsReport(models.Model):
                 if has_same_number_of_outlines and has_top_level_heading:
                     # Split the PDF according to outlines.
                     for i, num in enumerate(outlines_pages):
-                        to = outlines_pages[i + 1] if i + 1 < len(outlines_pages) else reader.numPages
+                        to = outlines_pages[i + 1] if i + 1 < len(outlines_pages) else len(reader.pages)
                         attachment_writer = PdfFileWriter()
                         for j in range(num, to):
                             attachment_writer.addPage(reader.getPage(j))

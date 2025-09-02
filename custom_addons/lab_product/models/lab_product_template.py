@@ -45,6 +45,12 @@ class LabProductTemplate(models.Model):
         domain="[('category_id.name', '=', 'Volume')]",
     )
     opened_date = fields.Date(string="Date Of Opening")
+    list_price = fields.Float(
+        'Sales Price', default=0.0,
+        digits='Product Price',
+        tracking=True,
+        help="Price at which the product is sold to customers.",
+    )
 
     @api.model
     def create(self, vals):
