@@ -19,6 +19,7 @@ Long description of module's purpose # todo
         # 'security/ir.model.access.csv',
         "views/lab_product_template_view.xml",
         "views/lab_stock_production_lot_view.xml",
+        "views/lab_stock_quant_view.xml",
         "data/ir_sequence.xml",
         "data/lab_product_categories.xml",
     ],

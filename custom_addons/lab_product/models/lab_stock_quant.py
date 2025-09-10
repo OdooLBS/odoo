@@ -2,20 +2,61 @@ from odoo import models
 import json
 import logging
 
+from odoo import api, fields
+from odoo.exceptions import ValidationError
+
 _logger = logging.getLogger(__name__)
 
 
 class LabStockQuant(models.Model):
     _inherit = "stock.quant"
 
+    qty_used = fields.Float(string="Quantity Used")
+
+    @api.onchange('qty_used')
+    def _onchange_qty_used_propose_counted(self):
+        for q in self:
+            used = q.qty_used or 0.0
+            q.inventory_quantity_set = True
+            q.inventory_quantity = max(0.0, (q.quantity or 0.0) - used)
+
+            _logger.debug(f"Inventor quantity changed to: {q.inventory_quantity}")
+
+    @api.onchange('inventory_quantity_auto_apply')
+    def _onchange_inventory_quantity_reset_used(self):
+        _logger.debug(f"Reset qty_used to 0.0")
+        for q in self:
+            q.qty_used = 0.0
+
     def write(self, vals):
+        _logger.debug(f"LabStockQuant write vals: {vals}") 
+
+        if (self.env.context.get('lab_skip_apply')):
+            return super().write(vals)
+
+        if 'qty_used' in vals:
+            for q in self:
+                used = vals.get('qty_used', q.qty_used) or 0.0
+                counted = max(0.0, (q.quantity or 0.0) - used)
+                _logger.debug(f"Auto setting inventory_quantity to {counted} for quant id {q.id}")
+                super().write({
+                     'inventory_quantity': counted,
+                     'inventory_quantity_set': True,
+                }) 
+                
+            quants = self.sudo().with_context(prefetch_fields=False).browse(self.ids)
+            to_apply = quants.filtered(lambda q:
+                q.product_id and q.location_id and q.inventory_quantity is not None # dodat lot
+            ) 
+            if to_apply:
+                ctx = dict(self.env.context, lab_skip_apply=True)
+                to_apply.with_context(ctx).action_apply_inventory()
+
         res = super().write(vals)
-        #if "quantity" in vals:
-        #    for record in self:
-        #        record._sync_with_lims_stock_quant(vals["quantity"])
         return res
 
-    """
+
+"""
     def _sync_with_lims_stock_quant(self, new_quantity):
 
         data = {
