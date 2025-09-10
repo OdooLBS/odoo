@@ -22,12 +22,6 @@ class LabStockQuant(models.Model):
 
             _logger.debug(f"Inventor quantity changed to: {q.inventory_quantity}")
 
-    @api.onchange('inventory_quantity_auto_apply')
-    def _onchange_inventory_quantity_reset_used(self):
-        _logger.debug(f"Reset qty_used to 0.0")
-        for q in self:
-            q.qty_used = 0.0
-
     def write(self, vals):
         _logger.debug(f"LabStockQuant write vals: {vals}") 
 
@@ -42,19 +36,22 @@ class LabStockQuant(models.Model):
                 super().write({
                      'inventory_quantity': counted,
                      'inventory_quantity_set': True,
-                }) 
+                })
+                if vals.get('qty_used') != 0.0:
+                    _logger.debug(f"Resetting qty_used to 0.0 for quant id {q.id}")
+                    vals['qty_used'] = 0.0
                 
             quants = self.sudo().with_context(prefetch_fields=False).browse(self.ids)
             to_apply = quants.filtered(lambda q:
                 q.product_id and q.location_id and q.inventory_quantity is not None # dodat lot
             ) 
             if to_apply:
+                _logger.debug(f"Applying inventory for quants: {to_apply.ids}")
                 ctx = dict(self.env.context, lab_skip_apply=True)
                 to_apply.with_context(ctx).action_apply_inventory()
 
         res = super().write(vals)
         return res
-
 
 """
     def _sync_with_lims_stock_quant(self, new_quantity):
