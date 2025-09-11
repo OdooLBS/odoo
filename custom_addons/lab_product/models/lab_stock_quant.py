@@ -11,7 +11,10 @@ _logger = logging.getLogger(__name__)
 class LabStockQuant(models.Model):
     _inherit = "stock.quant"
 
-    qty_used = fields.Float(string="Quantity Used")
+    qty_used = fields.Float(
+        string="Quantity Used", 
+        store=False,
+    )
 
     @api.onchange('qty_used')
     def _onchange_qty_used_propose_counted(self):

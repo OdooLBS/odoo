@@ -52,20 +52,8 @@
             <xpath expr="//field[@name='removal_time']/.." position="replace"/>
             <xpath expr="//label[@for='alert_time']" position="replace"/>
             <xpath expr="//field[@name='alert_time']/.." position="replace"/>
-            <xpath expr="//field[@name='expiration_time']/.." position="replace">
-                <div>
-                    <field name="expiration_time" class="oe_inline"/>
-                    <span> days after opening</span>
-                </div>
-            </xpath>
-            <xpath expr="//group[@name='expiry_and_lots']" position="inside">
-                <label for="opened_date"/>
-                <div>
-                    <field name="opened_date" class="oe_inline"/>
-                </div>
-            </xpath>
-
-
+            <xpath expr="//label[@for='expiration_time']" position="replace"/>
+            <xpath expr="//field[@name='expiration_time']/.." position="replace"/>
         </field>
     </record>
 <!--

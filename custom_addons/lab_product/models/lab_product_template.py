@@ -44,7 +44,6 @@ class LabProductTemplate(models.Model):
         string="Volume Unit",
         domain="[('category_id.name', '=', 'Volume')]",
     )
-    opened_date = fields.Date(string="Date Of Opening")
     list_price = fields.Float(
         'Sales Price', default=0.0,
         digits='Product Price',
@@ -107,24 +106,6 @@ class LabProductTemplate(models.Model):
                 },
             }
     """
-
-    def write(self, vals):
-        res = super().write(vals)
-
-        if vals.get("opened_date") is not None or vals.get("expiration_time") is not None:
-            for product in self:
-                for variant in product.product_variant_ids.filtered(lambda v: v.tracking in ('lot', 'serial')):
-                    lots = self.env["stock.lot"].search([("product_id", "=", variant.id)])
-                    for lot in lots:
-                        lot.with_context(from_template_recompute=True).write({
-                            "expiration_date": lot._calculate_expiration_date(
-                                product.opened_date,
-                                product.expiration_time,
-                            )
-                        })
-
-        return res
-
 
     def _get_default_code(self):
         code = self.env["ir.sequence"].next_by_code("product.template.default_code")
