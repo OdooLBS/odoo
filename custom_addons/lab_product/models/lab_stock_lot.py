@@ -2,6 +2,8 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 import datetime
 
+ALERT_DAYS_DEFAULT = 7
+
 
 class LabStockLot(models.Model):
     _inherit = "stock.lot"
@@ -11,6 +13,12 @@ class LabStockLot(models.Model):
         compute="_compute_expiration_date_unopened",
         help="Expiration date from package or label.",
     )
+
+    use_date = fields.Datetime(compute="_compute_dates")
+    removal_date = fields.Datetime(compute="_compute_dates")
+    alert_date = fields.Datetime(compute="_compute_dates")
+
+    product_expiry_alert = fields.Boolean(compute="_compute_product_expiry_alert")
 
     opened_date = fields.Datetime(
         string="Date Of Opening", 
@@ -31,6 +39,31 @@ class LabStockLot(models.Model):
     def _compute_expiration_date_unopened(self):
         self.expiration_date = False
 
+    @api.depends("product_id", "expiration_date", "expiration_date_after_opening")
+    def _compute_dates(self):
+        for lot in self:
+            if not lot.product_id.use_expiration_date:
+                lot.use_date = False
+                lot.removal_date = False
+                lot.alert_date = False
+            elif lot.expiration_date_after_opening:
+                lot.use_date = lot.expiration_date_after_opening
+                lot.removal_date = lot.expiration_date_after_opening
+                lot.alert_date = lot.expiration_date_after_opening - datetime.timedelta(ALERT_DAYS_DEFAULT)
+            else:
+                lot.use_date = lot.expiration_date
+                lot.removal_date = lot.expiration_date
+                lot.alert_date = lot.expiration_date - datetime.timedelta(ALERT_DAYS_DEFAULT)
+
+    @api.depends("alert_date")
+    def _compute_product_expiry_alert(self):
+        for lot in self:
+            if lot.alert_date:
+                lot.product_expiry_alert = lot.alert_date <= fields.Datetime.now()
+            else:
+                lot.product_expiry_alert = False
+
+    
     @api.depends("expiration_date", "opened_date")
     def _compute_expiration_date_opened(self):
         """
