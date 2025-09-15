@@ -5,3 +5,4 @@ from . import lab_product_product
 from . import lab_product_category
 from . import lab_stock_lot
 from . import lab_stock_quant
+from . import low_stock_alert
