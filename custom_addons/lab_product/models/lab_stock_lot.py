@@ -1,5 +1,4 @@
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
 import datetime
 
 ALERT_DAYS_DEFAULT = 7
@@ -37,10 +36,12 @@ class LabStockLot(models.Model):
 
     @api.depends("product_id")
     def _compute_expiration_date_unopened(self):
+        """Leave default expiration date empty if product does not use expiration dates."""
         self.expiration_date = False
 
     @api.depends("product_id", "expiration_date", "expiration_date_after_opening")
     def _compute_dates(self):
+        """ Compute use, removal, and alert dates based on expiration dates."""
         for lot in self:
             if not lot.product_id.use_expiration_date:
                 lot.use_date = False
@@ -61,6 +62,7 @@ class LabStockLot(models.Model):
 
     @api.depends("alert_date")
     def _compute_product_expiry_alert(self):
+        """ Determine if the product is in an alert state based on the alert date."""
         for lot in self:
             if lot.alert_date:
                 lot.product_expiry_alert = lot.alert_date <= fields.Datetime.now()
@@ -82,16 +84,6 @@ class LabStockLot(models.Model):
                     product_category.shelf_life_after_opening,
                     lot.expiration_date or None
                 )
-
-    def _inverse_expiration_date_opened(self):
-        """
-        Accept user-entered datetime regardless of category rule.
-        Optional validations: not after unopened expiration, not before opened date, etc.
-        """
-        for lot in self:
-            if lot.expiration_date and lot.opened_date and lot.expiration_date_after_opening:
-                if lot.expiration_date_after_opening > lot.expiration_date:
-                    lot.expiration_date_after_opening = lot.expiration_date
     
     @api.model
     def get_stock_lots(self):
@@ -110,6 +102,24 @@ class LabStockLot(models.Model):
         ]
         return result
 
-    def _calculate_expiration_date(self, opened_date, expiration_time, expiration_date=None):
-        if opened_date and expiration_time:
-            return min(opened_date + datetime.timedelta(days=expiration_time), expiration_date) if expiration_date else opened_date + datetime.timedelta(days=expiration_time)
+    def _inverse_expiration_date_opened(self):
+        """
+        Accept user-entered datetime regardless of category rule.
+        Optional validations: not after unopened expiration, not before opened date, etc.
+        """
+        for lot in self:
+            if lot.expiration_date and lot.opened_date and lot.expiration_date_after_opening:
+                if lot.expiration_date_after_opening > lot.expiration_date:
+                    lot.expiration_date_after_opening = lot.expiration_date
+    
+    def _calculate_expiration_date(self, opened_date, expiration_time, expiration_date):
+        """Calculate expiration date after opening."""
+        if not opened_date or not expiration_time:
+            return None
+        
+        opened_expiry_date = opened_date + datetime.timedelta(days=expiration_time)
+
+        if expiration_date is None:
+            return opened_expiry_date
+        
+        return min(opened_expiry_date, expiration_date)

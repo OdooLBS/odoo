@@ -1,9 +1,5 @@
-from odoo import models
-import json
+from odoo import models, api, fields
 import logging
-
-from odoo import api, fields
-from odoo.exceptions import ValidationError
 
 _logger = logging.getLogger(__name__)
 
@@ -11,13 +7,11 @@ _logger = logging.getLogger(__name__)
 class LabStockQuant(models.Model):
     _inherit = "stock.quant"
 
-    qty_used = fields.Float(
-        string="Quantity Used", 
-        store=False,
-    )
+    qty_used = fields.Float(string="Quantity Used", store=False)
 
     @api.onchange('qty_used')
     def _onchange_qty_used_propose_counted(self):
+        """ Propose inventory_quantity based on qty_used."""
         for q in self:
             used = q.qty_used or 0.0
             q.inventory_quantity_set = True
@@ -32,29 +26,45 @@ class LabStockQuant(models.Model):
             return super().write(vals)
 
         if 'qty_used' in vals:
-            for q in self:
-                used = vals.get('qty_used', q.qty_used) or 0.0
-                counted = max(0.0, (q.quantity or 0.0) - used)
-                _logger.debug(f"Auto setting inventory_quantity to {counted} for quant id {q.id}")
-                super().write({
-                     'inventory_quantity': counted,
-                     'inventory_quantity_set': True,
-                })
-                if vals.get('qty_used') != 0.0:
-                    _logger.debug(f"Resetting qty_used to 0.0 for quant id {q.id}")
-                    vals['qty_used'] = 0.0
-                
-            quants = self.sudo().with_context(prefetch_fields=False).browse(self.ids)
-            to_apply = quants.filtered(lambda q:
-                q.product_id and q.location_id and q.inventory_quantity is not None # dodat lot
-            ) 
-            if to_apply:
-                _logger.debug(f"Applying inventory for quants: {to_apply.ids}")
-                ctx = dict(self.env.context, lab_skip_apply=True)
-                to_apply.with_context(ctx).action_apply_inventory()
+            self._apply_inventory_qty_used(vals)
 
         res = super().write(vals)
         return res
+
+    def _apply_inventory_qty_used(self, vals):
+        """ Apply inventory changes based on qty_used."""
+        for q in self:
+            self._set_inventory_quantity(vals, q)
+
+            if vals.get('qty_used') != 0.0:
+                _logger.debug(f"Resetting qty_used to 0.0 for quant id {q.id}")
+                vals['qty_used'] = 0.0
+                
+        quants = self.sudo().with_context(prefetch_fields=False).browse(self.ids)
+        to_apply = quants.filtered(lambda q: q.product_id and q.location_id and q.inventory_quantity is not None ) # dodat lot 
+
+        if to_apply:
+            self._apply_inventory_for_quants(to_apply)
+
+    def _set_inventory_quantity(self, vals, q):
+        """ Set inventory_quantity based on qty_used."""
+        used = vals.get('qty_used', q.qty_used) or 0.0
+        counted = max(0.0, (q.quantity or 0.0) - used)
+
+        _logger.debug(f"Auto setting inventory_quantity to {counted} for quant id {q.id}")
+
+        super().write({
+             'inventory_quantity': counted,
+             'inventory_quantity_set': True,
+        })  
+
+    def _apply_inventory_for_quants(self, to_apply):
+        """ Apply inventory for the given quantities."""
+        _logger.debug(f"Applying inventory for quants: {to_apply.ids}")
+
+        ctx = dict(self.env.context, lab_skip_apply=True)
+        to_apply.with_context(ctx).action_apply_inventory()
+        
 
 """
     def _sync_with_lims_stock_quant(self, new_quantity):

@@ -1,7 +1,7 @@
 from odoo import models, api
 import logging
 
-from odoo import api, fields, models, tools, _
+from odoo import api, fields, models, _
 
 _logger = logging.getLogger(__name__)
 
@@ -24,11 +24,7 @@ class LabProductProduct(models.Model):
             defaults["default_code"] = self._get_default_code()
         return defaults
 
-    default_code = fields.Char(
-        string="Internal Reference",
-        copy=False,
-        index=True,
-    )
+    default_code = fields.Char(string="Internal Reference", copy=False, index=True)
 
     @api.model
     def create(self, vals):
@@ -129,6 +125,7 @@ class LabProductProduct(models.Model):
         }
 
     def _get_default_code(self):
+        """ Generate a new default code using a sequence."""
         code = self.env["ir.sequence"].next_by_code("product.template.default_code") # product.template.default_code zato da ostane sljedivost 
         if not code:
             raise ValueError("No sequence found for product.product.default_code")

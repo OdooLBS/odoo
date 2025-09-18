@@ -9,33 +9,33 @@ class LowStockAlertRunner(models.Model):
 
     @api.model
     def run_low_stock_checks(self):
+        """ Check all active orderpoints and create alerts if stock is below minimum."""
         orderpoint = self.env['stock.warehouse.orderpoint'].sudo()
         activity = self.env['mail.activity'].sudo()
         activity_type = self.env.ref('mail.mail_activity_data_todo')
 
-        # Resolve Inventory User group recipients
-        inv_group = self.env.ref('stock.group_stock_user', raise_if_not_found=False)
-        recipients = inv_group.users if inv_group else self.env['res.users']
+        # Send alert to users in Inventory User group
+        group = self.env.ref('stock.group_stock_user', raise_if_not_found=False)
+        recipients = group.users if group else self.env['res.users']
 
         irModel = self.env['ir.model'].sudo()
         product_model = irModel.search([('model', '=', 'product.product')], limit=1)
         if not product_model:
             return
         
-        # Active orderpoints only
-        ops = orderpoint.search([('active', '=', True)])
+        active_orderpoints = orderpoint.search([('active', '=', True)])
         today = fields.Date.context_today(self)
 
-        for op in ops:
-            product = op.product_id
-            location = op.location_id
+        for o in active_orderpoints:
+            product = o.product_id
+            location = o.location_id
 
             _logger.debug("Checking product %s at location %s", product.display_name, location.display_name)
 
             # Forecasted quantity at orderpoint location
             # virtual_available is forecasted qty; with location context it becomes per-location
             forecast = (product.with_context(location=location.id).virtual_available) or 0.0
-            min_qty = op.product_min_qty or 0.0
+            min_qty = o.product_min_qty or 0.0
 
             _logger.debug("Forecast: %.2f, Min Qty: %.2f", forecast, min_qty)
 
@@ -73,7 +73,7 @@ class LowStockAlertRunner(models.Model):
                     'summary': summary,
                     'note': _(
                         "Forecasted quantity %(f).2f is below Min %(m).2f for rule '%(r)s' at %(loc)s."
-                    ) % {'f': forecast, 'm': min_qty, 'r': op.display_name, 'loc': location.display_name},
+                    ) % {'f': forecast, 'm': min_qty, 'r': o.display_name, 'loc': location.display_name},
                     'date_deadline': today,
                 }
 
@@ -81,8 +81,8 @@ class LowStockAlertRunner(models.Model):
 
                 activity.create(vals)
 
-            # Log a message on the product for traceability
+            # Log a message on the product message section for traceability
             product.message_post(
                 body=_("Low stock alert at %s: forecasted %.2f < min %.2f (rule %s).") %
-                (location.display_name, forecast, min_qty, op.display_name)
+                (location.display_name, forecast, min_qty, o.display_name)
             )
