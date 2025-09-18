@@ -344,7 +344,7 @@
         <record id="slide_slide_action" model="ir.actions.act_window">
             <field name="name">Contents</field>
             <field name="res_model">slide.slide</field>
-            <field name="view_mode">kanban,list,form</field>
+            <field name="view_mode">list,kanban,form</field>
             <field name="context">{'search_default_own_publications':True}</field>
             <field name="domain">[('is_category', '=', False)]</field>
             <field name="help" type="html">

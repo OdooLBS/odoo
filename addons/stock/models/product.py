@@ -537,7 +537,7 @@ class Product(models.Model):
         action['context'] = {
             'default_product_id': self.id,
             'set_product_readonly': True,
-            'search_default_group_by_location': True,
+            'search_default_group_by_location': False,
         }
         return action
 
@@ -1003,7 +1003,7 @@ class ProductTemplate(models.Model):
         ]
         action['context'] = {
             'default_product_tmpl_id': self.id,
-            'search_default_group_by_location': True,
+            'search_default_group_by_location': False,
         }
         if self.product_variant_count == 1:
             action['context'].update({

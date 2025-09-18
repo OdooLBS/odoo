@@ -24,7 +24,7 @@
     <record id="rating_rating_action_livechat" model="ir.actions.act_window">
         <field name="name">Ratings for livechat channel</field>
         <field name="res_model">rating.rating</field>
-        <field name="view_mode">kanban,list,graph,pivot,form</field>
+        <field name="view_mode">list,kanban,graph,pivot,form</field>
         <field name="domain">[('parent_res_model', '=', 'im_livechat.channel'), ('consumed','=',True)]</field>
         <field name="search_view_id" ref="rating_rating_view_search_livechat"/>
         <field name="help" type="html">
@@ -87,7 +87,7 @@
     <record id="rating_rating_action_livechat_report" model="ir.actions.act_window">
         <field name="name">Customer Ratings</field>
         <field name="res_model">rating.rating</field>
-        <field name="view_mode">kanban,list,pivot,graph,form</field>
+        <field name="view_mode">list,kanban,pivot,graph,form</field>
         <field name="domain">[('parent_res_model','=','im_livechat.channel'), ('consumed', '=', True)]</field>
         <field name="search_view_id" ref="rating_rating_view_search_livechat"/>
         <field name="help" type="html">

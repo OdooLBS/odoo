@@ -34,7 +34,7 @@
         <record id="challenge_list_action2" model="ir.actions.act_window">
             <field name="name">Challenges</field>
             <field name="res_model">gamification.challenge</field>
-            <field name="view_mode">kanban,list,form</field>
+            <field name="view_mode">list,kanban,form</field>
             <field name="domain">[('challenge_category', '=', 'hr')]</field>
             <field name="context">{'search_default_inprogress':True, 'default_inprogress':True}</field>
             <field name="help" type="html">

@@ -1101,7 +1101,7 @@
         <record model="ir.actions.act_window" id="crm_lead_opportunities">
             <field name="name">Opportunities</field>
             <field name="res_model">crm.lead</field>
-            <field name="view_mode">kanban,list,graph,pivot,form,calendar,activity</field>
+            <field name="view_mode">list,kanban,graph,pivot,form,calendar,activity</field>
             <field name="domain">[('type','=','opportunity')]</field>
             <field name="context">{
                     'default_type': 'opportunity',
@@ -1148,7 +1148,7 @@
         <record model="ir.actions.act_window" id="crm_lead_action_pipeline">
             <field name="name">Pipeline</field>
             <field name="res_model">crm.lead</field>
-            <field name="view_mode">kanban,list,graph,pivot,form,calendar,activity</field>
+            <field name="view_mode">list,kanban,graph,pivot,form,calendar,activity</field>
             <field name="domain">[('type','=','opportunity')]</field>
             <field name="context">{
                     'default_type': 'opportunity',

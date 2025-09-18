@@ -182,7 +182,7 @@
     <record id="event_booth_action" model="ir.actions.act_window">
         <field name="name">Booths</field>
         <field name="res_model">event.booth</field>
-        <field name="view_mode">kanban,list,form,graph,pivot</field>
+        <field name="view_mode">list,kanban,form,graph,pivot</field>
         <field name="domain">[]</field>
         <field name="context">{'search_default_group_by_state': 1}</field>
         <field name="help" type="html">
@@ -197,7 +197,7 @@
     <record id="event_booth_action_from_event" model="ir.actions.act_window">
         <field name="name">Booths</field>
         <field name="res_model">event.booth</field>
-        <field name="view_mode">kanban,list,form,graph,pivot</field>
+        <field name="view_mode">list,kanban,form,graph,pivot</field>
         <field name="domain">[('event_id', '=', active_id)]</field>
         <field name="context">{'default_event_id': active_id, 'search_default_group_by_state': 1}</field>
         <field name="help" type="html">

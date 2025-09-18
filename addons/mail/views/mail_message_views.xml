@@ -173,7 +173,7 @@
             </field>
         </record>
         <record id="base.action_attachment" model="ir.actions.act_window">
-            <field name="view_mode">kanban,list,form</field>
+            <field name="view_mode">list,kanban,form</field>
             <field name="help" type="html">
               <p class="o_view_nocontent_smiling_face">
                 Attach a new document

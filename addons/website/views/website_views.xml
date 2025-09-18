@@ -6,7 +6,7 @@
         <record id="action_website_add_features" model="ir.actions.act_window">
             <field name="name">Apps</field>
             <field name="res_model">ir.module.module</field>
-            <field name="view_mode">kanban,list,form</field>
+            <field name="view_mode">list,kanban,form</field>
             <field name="domain">['!', ('name', '=like', 'theme_%')]</field>
             <field name="context" eval="{'search_default_category_id': ref('base.module_category_website_website'), 'searchpanel_default_category_id': ref('base.module_category_website')}"/>
         </record>

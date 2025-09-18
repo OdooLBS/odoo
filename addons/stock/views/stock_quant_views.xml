@@ -347,7 +347,7 @@
     <record model="ir.actions.act_window" id="action_package_view">
         <field name="name">Packages</field>
         <field name="res_model">stock.quant.package</field>
-        <field name="view_mode">kanban,list,form</field>
+        <field name="view_mode">list,kanban,form</field>
         <field name="context">{
             'search_default_location': True,
             'search_default_internal': True,

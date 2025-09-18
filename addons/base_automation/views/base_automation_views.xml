@@ -304,7 +304,7 @@
             <field name="name">Automation Rules</field>
             <field name="res_model">base.automation</field>
             <field name="path">automations</field>
-            <field name="view_mode">kanban,list,form</field>
+            <field name="view_mode">list,kanban,form</field>
             <field name="view_id" ref="view_base_automation_kanban"/>
             <field name="context">{'active_test': False}</field>
             <field name="help" type="html">
