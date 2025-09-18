@@ -5,6 +5,10 @@
         <field name="model">stock.lot</field>
         <field name="inherit_id" ref="stock.view_production_lot_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//group[@name='main_group']/group[2]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
             <xpath expr="//field[@name='removal_date']" position="replace"/>
             <xpath expr="//field[@name='use_date']" position="replace"/>
             <xpath expr="//field[@name='alert_date']" position="replace"/>

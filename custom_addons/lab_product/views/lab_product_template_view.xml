@@ -38,6 +38,18 @@
             <xpath expr="//div[@name='volume']" position="inside">
                 <field name="volume_uom_id" options="{'no_create': True}" placeholder="L"/>
             </xpath>
+            <xpath expr="//group[@name='stock_property']/field[@name='property_stock_production']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//group[field[@name='description_pickingin']]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//group[field[@name='description_pickingout']]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+                <xpath expr="//group[field[@name='description_picking']]" position="attributes">
+            <attribute name="invisible">1</attribute>
+            </xpath>
         </field>
     </record>
 
