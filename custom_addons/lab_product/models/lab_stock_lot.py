@@ -50,10 +50,14 @@ class LabStockLot(models.Model):
                 lot.use_date = lot.expiration_date_after_opening
                 lot.removal_date = lot.expiration_date_after_opening
                 lot.alert_date = lot.expiration_date_after_opening - datetime.timedelta(ALERT_DAYS_DEFAULT)
-            else:
+            elif lot.expiration_date:
                 lot.use_date = lot.expiration_date
                 lot.removal_date = lot.expiration_date
                 lot.alert_date = lot.expiration_date - datetime.timedelta(ALERT_DAYS_DEFAULT)
+            else:
+                lot.use_date = False
+                lot.removal_date = False
+                lot.alert_date = False
 
     @api.depends("alert_date")
     def _compute_product_expiry_alert(self):
