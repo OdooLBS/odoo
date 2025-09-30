@@ -12,7 +12,7 @@ class LowStockAlertRunner(models.Model):
         """ Check all active orderpoints and create alerts if stock is below minimum."""
         orderpoint = self.env['stock.warehouse.orderpoint'].sudo()
         activity = self.env['mail.activity'].sudo()
-        activity_type = self.env.ref('mail.mail_activity_data_todo')
+        activity_type = self.env.ref('mail.mail_activity_type_low_stock')
 
         # Send alert to users in Inventory User group
         group = self.env.ref('stock.group_stock_user', raise_if_not_found=False)

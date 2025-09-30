@@ -24,6 +24,7 @@ Long description of module's purpose # todo
         "data/ir_sequence.xml",
         "data/lab_product_categories.xml",
         "data/ir_cron.xml",
+        "data/mail_activity_type_data.xml",
     ],
     "demo": [
         # "demo/lot_template.csv",

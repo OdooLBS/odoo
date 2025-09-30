@@ -34,7 +34,7 @@ class LabStockQuant(models.Model):
     def _apply_inventory_qty_used(self, vals):
         """ Apply inventory changes based on qty_used."""
         for q in self:
-            self._set_inventory_quantity(vals, q)
+            self._lab_set_inventory_quantity(vals, q)
 
             if vals.get('qty_used') != 0.0:
                 _logger.debug(f"Resetting qty_used to 0.0 for quant id {q.id}")
@@ -46,7 +46,7 @@ class LabStockQuant(models.Model):
         if to_apply:
             self._apply_inventory_for_quants(to_apply)
 
-    def _set_inventory_quantity(self, vals, q):
+    def _lab_set_inventory_quantity(self, vals, q):
         """ Set inventory_quantity based on qty_used."""
         used = vals.get('qty_used', q.qty_used) or 0.0
         counted = max(0.0, (q.quantity or 0.0) - used)
