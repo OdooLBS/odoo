@@ -13,6 +13,7 @@
             <xpath expr="//field[@name='use_date']" position="replace"/>
             <xpath expr="//field[@name='alert_date']" position="replace"/>
             <xpath expr="//field[@name='expiration_date']" position="after">
+                <field name="date_of_receipt"/>
                 <field name="opened_date"/>
                 <field name="expiration_date_after_opening"/>
             </xpath>

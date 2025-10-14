@@ -34,6 +34,12 @@ class LabStockLot(models.Model):
         help="Editable field to allow manual adjustments if necessary. If not set, it will be computed based on the product category's shelf life after opening.",
     )
 
+    date_of_receipt = fields.Datetime(
+        string="Date of Receipt", 
+        setore=True,
+        help="Date when the product was received in lab.",
+    )
+
     @api.depends("product_id")
     def _compute_expiration_date_unopened(self):
         """Leave default expiration date empty if product does not use expiration dates."""
