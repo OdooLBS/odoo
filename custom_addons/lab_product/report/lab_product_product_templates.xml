@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="report_lab_label_2x7_custom">
+            <!-- <t t-set="barcode_size" t-value="'width:33mm;height:14mm'"/> --> 
+            <t t-set="table_style" t-value="'width:105mm;height:42.3mm;' + table_style"/>
+            <td t-att-style="make_invisible and 'visibility:hidden;'" >
+                <div class="o_label_full" t-att-style="table_style">
+                    <div class="o_label_name">
+                        <div>Naziv kemikalije: <span t-field="product.display_name"/></div>
+                        <div>Interni broj: <span t-field="product.default_code"/></div>
+                        <div>Potpis: _________________________________</div>
+                        <!--
+                        <div style="margin-top:10px;">
+                            Potpis: <span style="display:inline-block; border-bottom: 1px solid black; width: 20mm; margin-left: 5mm;">&nbsp;</span>
+                        </div>
+                        -->
+                    </div>
+                </div>
+            </td>
+        </template>
+
+        <template id="report_productlabel_extend" inherit_id="product.report_productlabel" >
+            <xpath expr="//t[contains(@t-if, 'columns and rows')]" position="inside">
+                <t t-if="columns == 2 and rows == 7 and custom_layout == 'custom'">
+                    <t t-set="report_to_call" t-value="'2x7_custom'"/>
+                </t>
+
+                <!-- Keep existing conditions -->
+                <t t-elif="columns == 2 and rows == 7">
+                    <t t-set="padding_page" t-value="'padding: 14mm 3mm'"/>
+                    <t t-set="report_to_call" t-value="'2x7'"/>
+                </t>
+            </xpath>
+
+             <!-- Call your custom 2x7 template -->
+            <xpath expr="//t[contains(@t-if, &quot;report_to_call == '2x7'&quot;)]" position="after">
+                <t t-if="report_to_call == '2x7_custom'">
+                    <t t-call="lab_product.report_lab_label_2x7_custom"/>
+                </t>
+            </xpath>
+        </template>
+    </data>
+</odoo>

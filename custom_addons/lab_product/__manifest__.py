@@ -21,10 +21,17 @@ Long description of module's purpose # todo
         "views/lab_product_category_view.xml",
         "views/lab_stock_production_lot_view.xml",
         "views/lab_stock_quant_view.xml",
+
         "data/ir_sequence.xml",
         "data/lab_product_categories.xml",
         "data/ir_cron.xml",
         "data/mail_activity_type_data.xml",
+        
+        "report/lab_product_product_templates.xml",
+        "report/lab_product_reports.xml",
+        "report/lab_product_template_templates.xml",
+        
+        "wizard/lab_product_label_layout_views.xml",
     ],
     "demo": [
         # "demo/lot_template.csv",

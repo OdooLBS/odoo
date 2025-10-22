@@ -1,0 +1,1 @@
+from . import lab_product_label_layout

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- IMPORTANT: explictly include col/row otherwise studio won't load report correctly -->
+    <template id="report_producttemplatelabel2x7custom"> 
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <t t-set="columns" t-value="2"/>
+                <t t-set="rows" t-value="7"/>
+                <t t-call="lab_product.report_productlabel_extend"/>
+            </div>
+        </t>
+    </template>
+    
+</odoo>
